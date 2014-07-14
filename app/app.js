@@ -48,23 +48,38 @@ while(option !== 'q'){
     }
   }
 
+  var animals;
   console.log('Client:', client);
   var choice = prompt('What type of Pet? (d)og, (c)at, (b)ee: ');
   switch(choice){
     case 'd':
       console.log('Dogs:', dogs);
+      animals = dogs;
       break;
     case 'c':
       console.log('Cats:', cats);
+      animals = cats;
       break;
     case 'b':
       console.log('Bees:', bees);
+      animals = bees;
   }
 
-  var name = prompt('What is the name of the animal you want to adopt? ');
+  name = prompt('What is the name of the animal you want to adopt? ');
 
+  for(i = 0; i < animals.length; i++){
+    if(animals[i].name === name){
+      var animal = animals[i];
+      var index = i;
+      break;
+    }
+  }
 
-
+  console.log('Animal:', animal);
+  animals.splice(index, 1);
+  client.pets.push(animal);
+  console.log('After adoption:', client);
+  console.log('Animals array:', animals);
 
   option = prompt('(b)ob, (s)am, (j)ill or (q)uit: ');
 }
